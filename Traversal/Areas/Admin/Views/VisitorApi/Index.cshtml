@@ -1,0 +1,66 @@
+﻿@model List<VisitorApi>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var a = 1;
+}
+@if (TempData["delete"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Uğurlu", 'Seçmiş olduğunuz ziyarətçi uğurla silindi!', "success");
+        };
+    </script>
+}
+@if (TempData["deleteerror"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Xəta", 'Seçmiş olduğunuz ziyarətçi silinmədi!', "error");
+        };
+    </script>
+}
+
+<div class="card" style="padding: 5px;">
+<h5 class="card-header">Ziyarətçilərin siyahısı(Api)</h5>
+    <a href="/Admin/VisitorApi/AddVisitor" class="btn btn-outline-primary">Yeni ziyarətçi</a>
+<div class="table-responsive text-nowrap">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Ad</th>
+                <th>Soy ad</th>
+                <th>Şəhər</th>
+                <th>Ölkə</th>
+                <th>Parametrlər</th>
+            </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>@a</strong></td>
+                    <td>@item.Name</td>
+                    <td>@item.Surname</td>
+                    <td>@item.City</td>
+                    <td>@item.Country</td>
+                    <td>
+                        <div class="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                    <a class="dropdown-item" asp-controller="VisitorApi" asp-action="Update" asp-route-id="@item.VisitorId" asp-area="Admin"><i class="bx bx-edit-alt me-1"></i> Güncəllə</a>
+                                    <a class="dropdown-item" asp-controller="VisitorApi" asp-action="Delete" asp-route-id="@item.VisitorId" asp-area="Admin"><i class="bx bx-trash me-1"></i> Sil</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                a++;
+            }
+        </tbody>
+    </table>
+</div>
+</div>

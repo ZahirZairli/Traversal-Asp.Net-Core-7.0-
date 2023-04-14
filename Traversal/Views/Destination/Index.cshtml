@@ -1,0 +1,33 @@
+﻿@using EntityLayer.Concrete
+@model List<Destination>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<section class="grids-1 py-5">
+    <div class="grids py-lg-5 py-md-4">
+        <div class="container">
+            <h3 class="hny-title mb-5">Turlar</h3>
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-4 col-6 mt-md-0 mt-4">
+                        <div class="column">
+                            <a href="/Destination/Detail/@item.DestinationId"><img src="/Images/@item.Image" alt="@item.City" class="img-fluid"></a>
+                            <div class="info">
+                                <h4><a href="blog-single.html">@item.City</a></h4>
+                                <p>@item.DayNight</p>
+                                <div class="dst-btm">
+                                    <h6 class="">Qiymət</h6>
+                                    <span>₼ @item.Price</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+

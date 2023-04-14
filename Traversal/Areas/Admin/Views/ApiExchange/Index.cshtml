@@ -1,0 +1,60 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common;
+@model IPagedList<ExchangeApi2.Exchange_Rates>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var a = 1;
+}
+
+<div class="card" style="padding: 5px;">
+    <h5 class="card-header">Məzənnə</h5>
+    <div class="table-responsive text-nowrap">
+        <div class="search">
+            <form type="post" action="/Admin/ApiExchange/Index">
+                <input  placeholde="Axtar." name="UserName" type="search" />
+                <button class="btn btn-primary" type="submit">Axtar</button>
+            </form>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Valyuta</th>
+                    <th>Dəyər</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>@a</strong></td>
+                        <td>@item.currency</td>
+                        <td>@item.exchange_rate_buy</td>
+                    </tr>
+                    a++;
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="container mt-4">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+        {
+        DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+        DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+        LinkToFirstPageFormat = "<<",
+        LinkToPreviousPageFormat = "<",
+        LinkToNextPageFormat = ">",
+        LinkToLastPageFormat = ">>",
+        MaximumPageNumbersToDisplay = 5,
+        ContainerDivClasses = new[] { "pagination", "justify-content-center" },
+        UlElementClasses = new[] { "pagination" },
+        LiElementClasses = new[] { "page-item" },
+        PageClasses = new[] { "page-link" },
+        })
+    </div>
+</div>
+

@@ -1,0 +1,70 @@
+﻿@model List<Destination>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var a = 1;
+}
+
+<div class="card">
+    <h5 class="card-header">Turların siyahısı</h5>
+    <a href="/Admin/AdminDestination/NewDestination" class="btn bn-outline btn-primary">Yeni tur</a>
+    <div class="table-responsive text-nowrap">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Şəhər</th>
+                    <th>Qİymət</th>
+                    <th>Şəkİl</th>
+                    <th>Tutum</th>
+                    <th>Status</th>
+                    <th>Ətraflı</th>
+                    <th>Parametrlər</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>@a</strong></td>
+                        <td>@item.City</td>
+                        <td>@item.Price</td>
+                        <td>
+                            <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
+                                <li data-bs-toggle="tooltip"
+                                data-popup="tooltip-custom"
+                                data-bs-placement="top"
+                                class="avatar avatar-xs pull-up"
+                                title="@item.City">
+                                    <img src="/Images/@item.Image" onerror="this.src='/Traversal-Liberty/assets/images/user.png'" alt="@item.City" class="rounded-circle" />
+                                </li>
+                            </ul>
+                        </td>
+                        <td>@item.Capacity</td>
+                        @if (item.Status == true)
+                        {
+                            <td><span class="badge bg-label-primary me-1">Aktiv</span></td>
+                        }
+                        else
+                        {
+                            <td><span class="badge bg-label-danger me-1">Passiv</span></td>
+                        }
+                        <td><a href="/Destination/Detail/@item.DestinationId"><i class="bx bx-revision"></i></a></td>
+                        <td>
+                            <div class="dropdown">
+                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" asp-controller="AdminDestination" asp-action="Edit" asp-route-id="@item.DestinationId" asp-area="Admin"><i class="bx bx-edit-alt me-1"></i> Güncəllə</a>
+                                    <a class="dropdown-item" asp-controller="AdminDestination" asp-action="Delete" asp-route-id="@item.DestinationId" asp-area="Admin"><i class="bx bx-trash me-1"></i> Sil</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    a++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

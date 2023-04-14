@@ -1,0 +1,51 @@
+﻿@model PresentationLayer.Areas.Member.Models.UserEditViewModel
+@{
+    ViewData["Title"] = "Index";
+    ViewData["page"] = "profile";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0">
+                <h6>Parametrlər</h6>
+                <hr />
+            </div>
+            <div class="card-body px-0 pt-0 pb-2">
+                <div style="display: flex;justify-content: center;align-items: center;">
+                    @*style="border-radius: 100%;width: 20%;"*@
+                    <img class="w-30 border-radius-lg shadow-sm" src="/Images/@Model.imageUrl" />
+                </div>
+                <div class="table-responsive p-0" style="padding: 40px !important;">
+                    <form class="form text-left" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Ad" asp-for="name">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Soy ad" asp-for="surname">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Telefon" asp-for="phonenumber">
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Email" asp-for="mail">
+                        </div>
+                        <div class="mb-3">
+                            <input type="file" class="form-control" placeholder="Profil şəkli" asp-for="Image">
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" placeholder="Şifrə" asp-for="password">
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" placeholder="Təkrar şifrə" asp-for="confirmpassword">
+                        </div>
+                        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                        <div class="text-center">
+                            <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Yadda saxla</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

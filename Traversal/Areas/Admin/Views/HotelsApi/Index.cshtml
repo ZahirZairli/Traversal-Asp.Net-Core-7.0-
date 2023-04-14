@@ -1,0 +1,128 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common;
+@model IPagedList<HotelsApi.Result>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var a = 1;
+    string selectedValue = ViewBag.city;
+}
+
+
+<div class="card" style="padding: 5px;">
+    <h5 class="card-header">Otellərin siyahısı</h5>
+    <div class="table-responsive text-nowrap">
+        <div class="search">
+            <form type="post" action="/Admin/HotelsApi/Index">
+                <select name="City" asp-for="@selectedValue">
+                    <option value="-2705195">Bakı</option>
+                    <option value="-2707932">Naxçıvan</option>
+                    <option value="8913498">Sumqayıt</option>
+                    <option value="-2706092">Gəncə</option>
+                    <option value="-2708296">Şəki</option>
+                </select>
+                <input placeholde="Axtar." name="UserName" type="search" />
+                <button class="btn btn-primary" type="submit">Axtar</button>
+            </form>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Otel adı</th>
+                    <th>Xal</th>
+                    <th>Ünvan</th>
+                    <th>Şəkli</th>
+                    <th>Bəyəni</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>@a</strong></td>
+                        <td>@item.hotel_name</td>
+                        <td>@item.review_score</td>
+                        <td>@item.address</td>
+                        <td style="width: 20%;"><img style="width:200px;height: 100px;border-radius:20%;"src="@item.max_1440_photo_url"/></td>
+                        <td>@item.review_score_word</td>
+                    </tr>
+                    a++;
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="container mt-4">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+        {
+        DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+        DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+        LinkToFirstPageFormat = "<<",
+        LinkToPreviousPageFormat = "<",
+        LinkToNextPageFormat = ">",
+        LinkToLastPageFormat = ">>",
+        MaximumPageNumbersToDisplay = 5,
+        ContainerDivClasses = new[] { "pagination", "justify-content-center" },
+        UlElementClasses = new[] { "pagination" },
+        LiElementClasses = new[] { "page-item" },
+        PageClasses = new[] { "page-link" },
+        })
+    </div>
+</div>
+<script type="text/javascript">
+    // JavaScript code to handle the click event on the images
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+        img.addEventListener('click', () => {
+            // Create a new container element to hold the enlarged image and close button
+            const container = document.createElement('div');
+            container.style.position = 'fixed';
+            container.style.top = '0';
+            container.style.left = '0';
+            container.style.width = '100%';
+            container.style.height = '100%';
+            container.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+            container.style.display = 'flex';
+            container.style.alignItems = 'center';
+            container.style.justifyContent = 'center';
+            container.style.zIndex = '9999';
+
+            // Create a new image element to display the clicked image
+            const enlargedImage = document.createElement('img');
+            enlargedImage.src = img.src;
+            enlargedImage.style.maxWidth = '80%';
+            enlargedImage.style.width = '80%';
+            enlargedImage.style.maxHeight = '80%';
+            enlargedImage.style.cursor = 'zoom-out';
+
+            // Create a close button for the enlarged image
+            const closeButton = document.createElement('button');
+            closeButton.textContent = 'Bağla';
+            closeButton.style.position = 'absolute';
+            closeButton.style.top = '10px';
+            closeButton.style.right = '10px';
+            closeButton.style.padding = '5px 10px';
+            closeButton.style.borderRadius = '5px';
+            closeButton.style.backgroundColor = 'white';
+            closeButton.style.color = 'black';
+            closeButton.style.cursor = 'pointer';
+            closeButton.style.zIndex = '10000';
+
+            // Add the enlarged image and close button to the container
+            container.appendChild(enlargedImage);
+            container.appendChild(closeButton);
+
+            // Add the container to the document
+            document.body.appendChild(container);
+
+            // Add a click event listener to the close button
+            closeButton.addEventListener('click', () => {
+                // Remove the container from the document
+                container.remove();
+            });
+        });
+    });
+</script>

@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+@await Component.InvokeAsync("_SliderComponent")
+@await Component.InvokeAsync("_PopularDestination")
+@await Component.InvokeAsync("_StatisticComponent")
+@await Component.InvokeAsync("_Feature")
+@await Component.InvokeAsync("_SubAbout")
+@await Component.InvokeAsync("Testimonial")
+

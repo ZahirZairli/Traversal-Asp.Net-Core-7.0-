@@ -1,0 +1,192 @@
+﻿@model EntityLayer.Concrete.Destination
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row">
+    <div class="col-xxl">
+        <div class="card mb-4">
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <h5 class="mb-0">@Model.City</h5>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <input type="hidden" asp-for="DestinationId"/>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-icon-default-city">Şəhər</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-city" class="input-group-text">
+                                    <i class="bx bx-map"></i>
+                                </span>
+                                <input type="text"
+                                       class="form-control"
+                                       id="basic-icon-default-city"
+                                       placeholder="Şəhər"
+                                       aria-label="Şəhər"
+                                       aria-describedby="basic-icon-default-city"
+                                       asp-for="City" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-icon-default-day">Gün Gecə</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-day" class="input-group-text">
+                                    <i class="bx bxs-time-five"></i>
+                                </span>
+                                <input type="text"
+                                       id="basic-icon-default-day"
+                                       class="form-control"
+                                       placeholder="Gün Gecə"
+                                       aria-label="Gün Gecə"
+                                       asp-for="DayNight"
+                                       aria-describedby="basic-icon-default-day" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 form-label" for="basic-icon-default-detail">Qısa təsvİr</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-detail" class="input-group-text">
+                                    <i class="bx bx-comment"></i>
+                                </span>
+                                <textarea id="basic-icon-default-detail"
+                                          class="form-control"
+                                          placeholder="Turun qısa təsviri"
+                                          aria-label="Turun qısa təsviri"
+                                          asp-for="Description"
+                                          aria-describedby="basic-icon-default-detail"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-icon-default-price">Qİymət(AzN)</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                                <span class="input-group-text"><i class="bx bxs-purchase-tag-alt"></i></span>
+                                <input type="text"
+                                       id="basic-icon-default-price"
+                                       class="form-control"
+                                       placeholder="Qiymət"
+                                       aria-label="Qiymət"
+                                       asp-for="Price"
+                                       aria-describedby="basic-icon-default-price" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-icon-default-capacity">Yer sayı</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                                <span class="input-group-text"><i class="bx bx-expand-horizontal"></i></span>
+                                <input type="number"
+                                       id="basic-icon-default-capacity"
+                                       class="form-control"
+                                       min="0"
+                                       placeholder="Yer sayı"
+                                       aria-label="Yer sayı"
+                                       asp-for="Capacity"
+                                       aria-describedby="basic-icon-default-capacity" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 form-label" for="basic-icon-default-image">Şəkİl</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-image" class="input-group-text">
+                                    <i class="bx bxs-image-add"></i>
+                                </span>
+                                <input type="file"
+                                       id="basic-icon-default-image"
+                                       class="form-control"
+                                       placeholder="Şəkil"
+                                       aria-label="Şəkil"
+                                       asp-for="Image"
+                                       aria-describedby="basic-icon-default-image" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 form-label" for="basic-icon-default-coverimage">Üzlük şəklİ</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-coverimage" class="input-group-text">
+                                    <i class="bx bxs-image-add"></i>
+                                </span>
+                                <input type="file"
+                                       id="basic-icon-default-coverimage"
+                                       class="form-control"
+                                       placeholder="Üzlük şəkli"
+                                       aria-label="Üzlük şəkli"
+                                       asp-for="CoverImage"
+                                       aria-describedby="basic-icon-default-coverimage" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 form-label" for="basic-icon-default-coverimage">Şəkİl 2</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-image2" class="input-group-text">
+                                    <i class="bx bxs-image-add"></i>
+                                </span>
+                                <input type="file"
+                                       id="basic-icon-default-image2"
+                                       class="form-control"
+                                       placeholder="Şəkil 2"
+                                       aria-label="Şəkil 2"
+                                       asp-for="Image2"
+                                       aria-describedby="basic-icon-default-image2" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 form-label" for="basic-icon-default-detail1">Detal 1</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-detail1" class="input-group-text">
+                                    <i class="bx bx-comment"></i>
+                                </span>
+                                <textarea id="basic-icon-default-detail1"
+                                          class="form-control"
+                                          placeholder="Detal 1"
+                                          aria-label="Detal 1"
+                                          asp-for="Details1"
+                                          aria-describedby="basic-icon-default-detail1"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 form-label" for="basic-icon-default-detail2">Detal 2</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-detail2" class="input-group-text">
+                                    <i class="bx bx-comment"></i>
+                                </span>
+                                <textarea id="basic-icon-default-detail2"
+                                          class="form-control"
+                                          placeholder="Detal 2"
+                                          aria-label="Detal 2"
+                                          asp-for="Details2"
+                                          aria-describedby="basic-icon-default-detail2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-end">
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-primary">Yadda saxla</button>
+                            <a class="btn btn-danger" href="javascript:history.back()">Geri qayıt </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

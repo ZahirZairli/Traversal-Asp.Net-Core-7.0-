@@ -1,0 +1,167 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    button{
+        display: inline;
+        margin-top: 5px;
+    }
+</style>
+<div class="card" style="padding: 14px;">
+    <h5 class="card-header">Ajax</h5>
+    <button id="getList" class="btn btn-outline-primary">Müştəri geri dönüşlərinə bax</button>
+    <button id="Search1" class="btn btn-outline-success">Axtar</button>
+    <button id="AddFirst" class="btn btn-outline-danger">Əlavə et</button>
+    <button id="Delete" class="btn btn-outline-warning">Id'yə görə sil</button>
+    <div id="testimonial" class="table-responsive text-nowrap" style="text-align: center;">
+    </div>
+    <div id="srch" style="display: none;">
+        <input class="form-control mt-4" id="searchInput" placeholder="Tam ad" />
+        <button class="btn btn-outline-primary" id="search">Axtar</button>    
+    </div>
+    <div id="dlt" style="display: none;">
+        <input class="form-control mt-4" id="deleteInput" placeholder="Id" />
+        <button class="btn btn-outline-warning" id="deletemain">Sil</button>
+    </div>
+        <div class="card-body" id="addza" style="display: none;">
+            <form method="post">
+                <div class="row mb-3">
+                    <label class="col-sm-2 form-label" for="basic-icon-default-detail2">Tam Ad</label>
+                    <div class="col-sm-10">
+                        <div class="input-group input-group-merge">
+                            <span id="basic-icon-default-detail2" class="input-group-text">
+                                <i class="bx bx-person"></i>
+                            </span>
+                            <textarea required id="basic-icon-default-detail2" class="form-control cl"  placeholder="Tam ad" aria-label="Tam ad" aria-describedby="basic-icon-default-detail2"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 form-label" for="basic-icon-default-detail">Mesaj</label>
+                    <div class="col-sm-10">
+                        <div class="input-group input-group-merge">
+                            <span id="basic-icon-default-detail" class="input-group-text">
+                                <i class="bx bx-comment"></i>
+                            </span>
+                            <textarea required id="basic-icon-default-detail"
+                                      class="form-control com"
+                                      placeholder="Mesaj"
+                                      aria-label="Mesaj"
+                                      aria-describedby="basic-icon-default-detail"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-end">
+                    <div class="col-sm-10">
+                        <button type="submit" id="Add" class="btn btn-primary">Əlavə et</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+</div>
+
+<script>
+    $('#getList').click(function () {
+        GetList();
+    });
+
+        function GetList(){
+        $('#testimonial').html('<div class="spinner-border text-danger mt-4"></div>');
+        $.ajax({
+            contentType: 'application/json',
+            dataType: 'json',
+            type: 'Get',
+            url: '/Admin/AdminTestimonialAjax/TestiMonialsList',
+            success: function (func) {
+                let data = jQuery.parseJSON(func);
+                let tableHtml = '<table class="table table-bordered table-hover mt-4"><thead><tr><th>#</th><th>Tam ad</th><th>Mesaj</th></tr></thead><tbody class="table-border-bottom-0">';
+                $.each(data, (index, value) => {
+                    tableHtml += `<tr><td>${index + 1}</td><td>${value.Client} (Id-${value.TestimonialId})</td><td>${value.Comment}</td></tr>`;
+                });
+                tableHtml += ' </tbody></table>';
+                $('#testimonial').html(tableHtml);
+            }
+        });
+    }
+
+
+    $('#Add').click(function(e){
+        e.preventDefault();
+        Add();
+    });
+    $('#AddFirst').click(function () {
+        $('#addza').slideToggle();
+    });
+        function Add(){
+        let testValues = {
+            Client: $('.cl').val(),
+            Comment: $('.com').val()
+        };
+        $.ajax({
+            type: 'Post',
+            url: '/Admin/AdminTestimonialAjax/TestiMonialsAdd',
+            data: testValues,
+            success: function (func) {
+                let result = jQuery.parseJSON(func);
+                GetList();
+            }
+        });
+        };
+
+    $('#Search1').click(function(){
+        $('#srch').slideToggle();
+    });
+    $('#Delete').click(function () {
+        GetList();
+        $('#dlt').slideToggle();
+    });
+
+    $('#search').click(function(){
+        Search();
+    })
+
+
+    function Search(){
+        $('#testimonial').html('<div class="spinner-border text-danger mt-4"></div>');
+        $.ajax({
+            type: 'Get',
+            url: '/Admin/AdminTestimonialAjax/TestiMonialsWithName',
+            data: {
+                data: $("#searchInput").val()
+            },
+            dataType: 'json',
+            success: function(func){
+                let data = jQuery.parseJSON(func);
+                let tableHtml = '<table class="table table-bordered table-hover mt-4"><thead><tr><th>#</th><th>Tam ad</th><th>Mesaj</th></tr></thead><tbody class="table-border-bottom-0">';
+                $.each(data, (index, value) => {
+                    tableHtml += `<tr><td>${index + 1}</td><td>${value.Client} (Id-${value.TestimonialId})</td><td>${value.Comment}</td></tr>`;
+                });
+                tableHtml += ' </tbody></table>';
+                $('#testimonial').html(tableHtml);
+            }
+        })
+    };
+
+    $('#deletemain').click(function(){
+        Delete();
+    });
+    function Delete() {
+        $.ajax({
+            type: 'Post',
+            url: '/Admin/AdminTestimonialAjax/TestiMonialsDelete',
+            data: {
+                id: $('#deleteInput').val()
+            },
+            success: function (func) {
+                GetList();
+            }
+        });
+    };
+
+</script>
+
+
+@*<th>Şəkil</th>*@
+@*<td><img src="/Traversal-Liberty/assets/images/${value.Image}" onerror="this.src='/Traversal-Liberty/assets/images/user.png'" alt="${value.Client}" class="rounded-circle" /></td>*@

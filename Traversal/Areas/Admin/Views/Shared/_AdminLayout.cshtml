@@ -1,0 +1,37 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en"
+      class="light-style layout-menu-fixed"
+      dir="ltr"
+      data-theme="theme-default"
+      data-assets-path="~/sneat-1.0.0/assets/"
+      data-template="vertical-menu-template-free">
+<head>
+    @await Html.PartialAsync("~/Areas/Admin/Views/Partials/AdminHeadPartial.cshtml")
+</head>
+<body>
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                @await Html.PartialAsync("~/Areas/Admin/Views/Partials/AdminAppBrandPartial.cshtml")
+                <div class="menu-inner-shadow"></div>
+                @await Html.PartialAsync("~/Areas/Admin/Views/Partials/AdminLeftMenuPartial.cshtml")
+            </aside>
+            <div class="layout-page">
+                @await Html.PartialAsync("~/Areas/Admin/Views/Partials/AdminNavbarPartial.cshtml")
+                <div class="content-wrapper">
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        @RenderBody()
+                    </div>
+                    @await Html.PartialAsync("~/Areas/Admin/Views/Partials/AdminFooterPartial.cshtml")
+                    <div class="content-backdrop fade"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    @await Html.PartialAsync("~/Areas/Admin/Views/Partials/AdminScriptPartial.cshtml")
+</body>
+</html>

@@ -1,0 +1,79 @@
+﻿@model PresentationLayer.Areas.Admin.Models.MailRequest
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@if (TempData["message"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Uğurlu", 'Mesajınız uğurla göndərildi', "success");
+        };
+    </script>
+}
+<div class="row">
+    <div class="col-xxl">
+        <div class="card mb-4">
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <h5 class="mb-0">Mail göndər</h5>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-icon-default-city">Tam ad</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-city" class="input-group-text">
+                                    <i class="bx bx-person"></i>
+                                </span>
+                                <input type="email"
+                                       class="form-control"
+                                       id="basic-icon-default-city"
+                                       placeholder="Kimə"
+                                       aria-label="Kimə"
+                                       aria-describedby="basic-icon-default-city"
+                                       asp-for="ReceiverMail" />
+                                <span class="text-danger" asp-validation-for="ReceiverMail"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 form-label" for="basic-icon-default-detail2">Başlıq</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-detail2" class="input-group-text">
+                                    <i class="bx bx-comment"></i>
+                                </span>
+                                <textarea id="basic-icon-default-detail2" class="form-control" placeholder="Başlıq"aria-label="Başlıq"asp-for="Subject"aria-describedby="basic-icon-default-detail2"></textarea>
+                                <span class="text-danger" asp-validation-for="Subject"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 form-label" for="basic-icon-default-detail">Mesaj</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-detail" class="input-group-text">
+                                    <i class="bx bx-comment"></i>
+                                </span>
+                                <textarea id="basic-icon-default-detail"
+                                          class="form-control"
+                                          placeholder="Mesaj"
+                                          aria-label="Mesaj"
+                                          asp-for="Body"
+                                          aria-describedby="basic-icon-default-detail"></textarea>
+                                <span class="text-danger" asp-validation-for="Body"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row justify-content-end">
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-primary">Göndər</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

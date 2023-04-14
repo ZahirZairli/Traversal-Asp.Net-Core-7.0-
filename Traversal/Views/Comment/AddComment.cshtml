@@ -1,0 +1,64 @@
+﻿
+<div class="leave-comment-form mt-5" id="reply">
+    <h4 class="side-title mb-2">Yorum Yaz</h4>
+    <p class="mb-4">
+        Email adresiniz tam məxfi saxlanılır. Vacib hissələr ulduz(*)-ilə işarələnib.
+    </p>
+    <form action="/Comment/AddComment" id="addcomment" method="post">
+        <div class="form-group">
+            <textarea id="Content" name="Content" class="form-control" placeholder="Mesajınız*" required=""
+                      spellcheck="false"></textarea>
+        </div>
+        <div class="input-grids row">
+            <div class="form-group col-lg-6">
+                <input type="hidden" name="DestinationId" value="@Model.DestinationId" />
+                <input type="text" id="name" name="FullName" class="form-control" placeholder="Tam ad*"
+                       required="">
+            </div>
+        </div>
+        <div class="submit text-right">
+            <button type="submit" class="btn btn-style btn-primary">Paylaş</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    // this is the id of the form
+    $("#addcomment").submit(function (e) {
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+        e.stopImmediatePropagation();
+        var form = $(this);
+        var url = form.attr('action');
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: form.serialize(), // serializes the form's elements.
+            success: function () {
+                swal("Təbrikler!", document.getElementById("name").value + " " + "uğurla yorum yazdınız ", "success"); // show response from the php script.
+                var name = $('#name').val();
+                var message = $('#Content').val();
+                var time = new Date();
+                var month = time.getMonth(); 
+                var mainmonth = parseInt(month)+parseInt('1');
+                var d1 = time.getDate() + "-" +mainmonth + "-" + time.getFullYear();
+
+                var e = $(`<div class="media mt-4"><div class= "img-circle"><img src="/Traversal-Liberty/assets/images/c1.jpg" class="img-fluid" alt ="..." ></div><div class="media-body"><ul class="time-rply mb-2" >
+                <li>
+                    <a href="#URL" class="name mt-0 mb-2 d-block">${name}</a>
+                    ${d1}
+                </li>
+                    </ul>
+                    <p>
+                    ${message}
+                    </p>
+                    </div>
+                    </div>`)
+                $('#comment').append(e);
+                $('#Content').val("");
+                $('#name').val("");
+                var a = parseInt($('#commentcount').html());
+                $('#commentcount').html(a+1);
+                }
+        });
+    });
+</script>
