@@ -1,6 +1,6 @@
-﻿namespace PresentationLayer.CQRS.Results.DestinationResults
+﻿namespace PresentationLayer.CQRS.Commands.DestinationCommands
 {
-    public class GetDestinationByIdQueryResult
+    public class UpdateDestinationCommand
     {
         public int DestinationId { get; set; }
         public string City { get; set; }

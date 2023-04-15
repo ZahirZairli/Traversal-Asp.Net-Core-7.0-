@@ -22,6 +22,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 //************made on my own start for using CQRS
 builder.Services.AddScoped<GetDestinationsForStrangersQueryHandler>();
+builder.Services.AddScoped<GetDestinationByIdQueryHandler>();
+builder.Services.AddScoped<CreateDestinationCommandHandler>();
+builder.Services.AddScoped<RemoveDestinationCommandHandler>();
+builder.Services.AddScoped<UpdateDestinationCommandHandler>();
 //****************made on my own end
 
 //************made on my own start for Logging

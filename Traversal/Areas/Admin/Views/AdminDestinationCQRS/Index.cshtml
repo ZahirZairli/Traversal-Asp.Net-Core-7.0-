@@ -10,7 +10,7 @@
 
 <div class="card" style="padding: 5px;">
     <h5 class="card-header">CQRS Turlar()</h5>
-    <a href="/Admin/AdminDestinationCQRS/NewDestination" class="btn btn-outline-warning">Yeni tur</a>
+    <a href="/Admin/AdminDestinationCQRS/CreateDestination" class="btn btn-outline-warning">Yeni tur</a>
     <div class="table-responsive mt-4 text-nowrap">
         <div class="search">
             <form type="post" action="/Admin/AdminDestinationCQRS/Index">
@@ -36,7 +36,7 @@
                         <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>@a</strong></td>
                         <td>@item.City</td>
                         <td>@item.DayNight</td>
-                        <td>@item.Price</td>
+                        <td>@item.Price ₼</td>
                         <td>@item.Capacity</td>
                         <td>
                             <div class="dropdown">
@@ -44,8 +44,8 @@
                                     <i class="bx bx-dots-vertical-rounded"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" asp-controller="AdminDestinationCQRS" asp-action="Update" asp-route-id="@item.DestinationId" asp-area="Admin"><i class="bx bx-edit-alt me-1"></i> Güncəllə</a>
-                                    <a class="dropdown-item" asp-controller="AdminDestinationCQRS" asp-action="Delete" asp-route-id="@item.DestinationId" asp-area="Admin"><i class="bx bx-trash me-1"></i> Sil</a>
+                                    <a class="dropdown-item" asp-controller="AdminDestinationCQRS" asp-action="GetDestination" asp-route-id="@item.DestinationId" asp-area="Admin"><i class="bx bx-edit-alt me-1"></i> Güncəllə</a>
+                                    <a class="dropdown-item" asp-controller="AdminDestinationCQRS" asp-action="RemoveDestination" asp-route-id="@item.DestinationId" asp-area="Admin"><i class="bx bx-trash me-1"></i> Sil</a>
                                 </div>
                             </div>
                         </td>

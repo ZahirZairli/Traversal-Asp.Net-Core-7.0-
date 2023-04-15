@@ -2,9 +2,9 @@
 {
     public class GetDestinationByIdQuery
     {
-        public GetDestinationByIdQuery(int ıd)
+        public GetDestinationByIdQuery(int id)
         {
-            Id = ıd;
+            Id = id;
         }
 
         public int Id { get; set; }

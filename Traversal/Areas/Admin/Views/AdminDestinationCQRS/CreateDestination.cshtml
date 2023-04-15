@@ -1,0 +1,90 @@
+﻿@model CreateDestinationCommand
+@{
+    ViewData["Title"] = "CreateDestination";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+<div class="col-xxl">
+    <div class="card mb-4">
+        <div class="card-header d-flex align-items-center justify-content-between">
+            <h5 class="mb-0">Yeni tur(CQRS)</h5>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="basic-icon-default-city">Şəhər</label>
+                    <div class="col-sm-10">
+                        <div class="input-group input-group-merge">
+                            <span id="basic-icon-default-city" class="input-group-text">
+                                <i class="bx bx-map"></i>
+                            </span>
+                            <input type="text"
+                                   class="form-control"
+                                   id="basic-icon-default-city"
+                                   placeholder="Şəhər"
+                                   aria-label="Şəhər"
+                                   aria-describedby="basic-icon-default-city"
+                                   asp-for="City" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="basic-icon-default-day">Gün Gecə</label>
+                    <div class="col-sm-10">
+                        <div class="input-group input-group-merge">
+                            <span id="basic-icon-default-day" class="input-group-text">
+                                <i class="bx bxs-time-five"></i>
+                            </span>
+                            <input type="text"
+                                   id="basic-icon-default-day"
+                                   class="form-control"
+                                   placeholder="Gün Gecə"
+                                   aria-label="Gün Gecə"
+                                   asp-for="DayNight"
+                                   aria-describedby="basic-icon-default-day" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="basic-icon-default-price">Qİymət(AzN)</label>
+                    <div class="col-sm-10">
+                        <div class="input-group input-group-merge">
+                            <span class="input-group-text"><i class="bx bxs-purchase-tag-alt"></i></span>
+                            <input type="text"
+                                   id="basic-icon-default-price"
+                                   class="form-control"
+                                   placeholder="Qiymət"
+                                   aria-label="Qiymət"
+                                   asp-for="Price"
+                                   aria-describedby="basic-icon-default-price" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="basic-icon-default-capacity">Yer sayı</label>
+                    <div class="col-sm-10">
+                        <div class="input-group input-group-merge">
+                            <span class="input-group-text"><i class="bx bx-expand-horizontal"></i></span>
+                            <input type="number"
+                                   id="basic-icon-default-capacity"
+                                   class="form-control"
+                                   min="0"
+                                   placeholder="Yer sayı"
+                                   aria-label="Yer sayı"
+                                   asp-for="Capacity"
+                                   aria-describedby="basic-icon-default-capacity" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-end">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Əlavə et</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
