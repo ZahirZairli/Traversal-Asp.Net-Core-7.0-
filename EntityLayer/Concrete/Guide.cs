@@ -13,9 +13,9 @@ namespace EntityLayer.Concrete
         public int GuideId { get; set; }
         public string FullName { get; set; }
         public string Description { get; set; }
-        public string Image { get; set; }
-        public string TwitterUrl { get; set; }
-        public string InstagramUrl { get; set; }
+        public string Image { get; set; } = "user.png";
+        public string TwitterUrl { get; set; } = "user.png";
+        public string InstagramUrl { get; set; } = "user.png";
         public bool Status { get; set; } = true;
     }
 }

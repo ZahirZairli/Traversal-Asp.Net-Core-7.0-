@@ -9,6 +9,7 @@ using DTOLayer.DTOs.AnnouncementDTOs;
 using EntityLayer.Concrete;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using PresentationLayer.CQRS.Handlers.DestinationHandlers;
@@ -27,6 +28,12 @@ builder.Services.AddScoped<CreateDestinationCommandHandler>();
 builder.Services.AddScoped<RemoveDestinationCommandHandler>();
 builder.Services.AddScoped<UpdateDestinationCommandHandler>();
 //****************made on my own end
+
+//************made on my own start for using CQRS(MediatR)
+builder.Services.AddMediatR(typeof(Program));
+//****************made on my own end
+
+
 
 //************made on my own start for Logging
 builder.Services.AddLogging(x =>
