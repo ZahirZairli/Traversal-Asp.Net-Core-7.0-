@@ -10,5 +10,6 @@ namespace DataAccessLayer.Abstract
     public interface ICommentDal : IGenericDal<Comment>
     {
         List<Comment> GetCommentsWithDestination();
+        List<Comment> GetCommentsWithAppUserAndDestination(int destinationId);
     }
 }

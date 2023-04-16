@@ -1,9 +1,10 @@
-﻿
-<div class="leave-comment-form mt-5" id="reply">
+﻿<div class="leave-comment-form mt-5" id="reply">
     <h4 class="side-title mb-2">Yorum Yaz</h4>
     <p class="mb-4">
         Email adresiniz tam məxfi saxlanılır. Vacib hissələr ulduz(*)-ilə işarələnib.
     </p>
+    @if (User.Identity.IsAuthenticated)
+    {
     <form action="/Comment/AddComment" id="addcomment" method="post">
         <div class="form-group">
             <textarea id="Content" name="Content" class="form-control" placeholder="Mesajınız*" required=""
@@ -12,14 +13,20 @@
         <div class="input-grids row">
             <div class="form-group col-lg-6">
                 <input type="hidden" name="DestinationId" value="@Model.DestinationId" />
-                <input type="text" id="name" name="FullName" class="form-control" placeholder="Tam ad*"
-                       required="">
             </div>
         </div>
         <div class="submit text-right">
             <button type="submit" class="btn btn-style btn-primary">Paylaş</button>
         </div>
     </form>
+    }
+    else
+    {
+        <div class="submit text-right">
+            <a href="/Account/Login" class="btn btn-style btn-primary">Hesabınıza daxil olun</a>
+            <a href="/Account/SignUp" class="btn btn-style btn-primary">Qeydiyyatdan keçin</a>
+        </div>
+    }
 </div>
 
 <script>
@@ -34,15 +41,16 @@
             url: url,
             data: form.serialize(), // serializes the form's elements.
             success: function () {
-                swal("Təbrikler!", document.getElementById("name").value + " " + "uğurla yorum yazdınız ", "success"); // show response from the php script.
-                var name = $('#name').val();
+                var name = '@ViewBag.name';
+                var image = '@ViewBag.userimage';
+                swal("Təbrikler!", name+ " " + "uğurla yorum yazdınız ", "success"); // show response from the php script.
                 var message = $('#Content').val();
                 var time = new Date();
                 var month = time.getMonth(); 
                 var mainmonth = parseInt(month)+parseInt('1');
                 var d1 = time.getDate() + "-" +mainmonth + "-" + time.getFullYear();
 
-                var e = $(`<div class="media mt-4"><div class= "img-circle"><img src="/Traversal-Liberty/assets/images/c1.jpg" class="img-fluid" alt ="..." ></div><div class="media-body"><ul class="time-rply mb-2" >
+                var e = $(`<div class="media mt-4"><div class= "img-circle"><img src="/Images/${image}" class="img-fluid" alt ="..." ></div><div class="media-body"><ul class="time-rply mb-2" >
                 <li>
                     <a href="#URL" class="name mt-0 mb-2 d-block">${name}</a>
                     ${d1}

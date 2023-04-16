@@ -9,7 +9,7 @@ namespace PresentationLayer.ViewComponents.Default
         DestinationManager dm = new DestinationManager(new EfDestinationDal());
         public IViewComponentResult Invoke()
         {
-            var destinations = dm.TGetListFilter(x => x.Status == true).OrderByDescending(x => x.DestinationId).ToList();
+            var destinations = dm.TGetListFilter(x => x.Status == true).OrderByDescending(x => x.DestinationId).Take(4).ToList();
             return View(destinations);
         }
     }

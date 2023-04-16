@@ -13,6 +13,14 @@ namespace DataAccessLayer.EntityFramework
 {
     public class EfCommentDal : GenericRepository<Comment>, ICommentDal
     {
+        public List<Comment> GetCommentsWithAppUserAndDestination(int destinationId)
+        {
+            using (var c = new Context())
+            {
+                return c.Comments.Where(x=>x.DestinationId==destinationId).Include(x => x.AppUser).ToList();
+            }
+        }
+
         public List<Comment> GetCommentsWithDestination()
         {
             using (var c = new Context())

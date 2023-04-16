@@ -1,5 +1,8 @@
-﻿@using EntityLayer.Concrete
-@model List<Destination>
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common;
+@using EntityLayer.Concrete
+@model IPagedList<Destination>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_SiteLayout.cshtml";
@@ -14,7 +17,7 @@
                 {
                     <div class="col-lg-4 col-md-4 col-6 mt-md-0 mt-4">
                         <div class="column">
-                            <a href="/Destination/Detail/@item.DestinationId"><img src="/Images/@item.Image" alt="@item.City" class="img-fluid"></a>
+                            <a href="/Destination/Detail/@item.DestinationId"><img style="width:320px;height: 180px;" src="/Images/@item.Image" alt="@item.City" class="img-fluid"></a>
                             <div class="info">
                                 <h4><a href="blog-single.html">@item.City</a></h4>
                                 <p>@item.DayNight</p>
@@ -26,6 +29,24 @@
                         </div>
                     </div>
                 }
+            </div>
+            <div class="container mt-4">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+                {
+                DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                LinkToFirstPageFormat = "<<",
+                LinkToPreviousPageFormat = "<",
+                LinkToNextPageFormat = ">",
+                LinkToLastPageFormat = ">>",
+                MaximumPageNumbersToDisplay = 5,
+                ContainerDivClasses = new[] { "pagination", "justify-content-center" },
+                UlElementClasses = new[] { "pagination" },
+                LiElementClasses = new[] { "page-item" },
+                PageClasses = new[] { "page-link" },
+                })
             </div>
         </div>
     </div>

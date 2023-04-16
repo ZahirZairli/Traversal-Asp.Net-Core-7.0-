@@ -40,6 +40,11 @@ namespace BusinessLayer.Concrete
             return _commentDal.GetById(id);
         }
 
+        public List<Comment> TGetCommentsWithAppUserAndDestination(int destinationId)
+        {
+            return _commentDal.GetCommentsWithAppUserAndDestination(destinationId);
+        }
+
         public List<Comment> TGetCommentsWithDestination()
         {
             return _commentDal.GetCommentsWithDestination();

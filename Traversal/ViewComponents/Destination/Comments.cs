@@ -9,7 +9,7 @@ namespace PresentationLayer.ViewComponents.Destination
         CommentManager cm = new CommentManager(new EfCommentDal());
         public IViewComponentResult Invoke(int id)
         {
-            var comments = cm.GetCommentsByDestinationId(id).Where(x=>x.Status==true).ToList();
+            var comments = cm.TGetCommentsWithAppUserAndDestination(id).Where(x=>x.Status==true).ToList();
             return View(comments);
         }
     }
