@@ -1,8 +1,11 @@
 ﻿using BusinessLayer.Abstract;
+using BusinessLayer.Abstract.AbstractUnitOfWork;
 using BusinessLayer.Concrete;
+using BusinessLayer.Concrete.ConcreteUnitOfWork;
 using BusinessLayer.FluentValidation;
 using DataAccessLayer.Abstract;
 using DataAccessLayer.EntityFramework;
+using DataAccessLayer.UnitOfWork;
 using DTOLayer.DTOs.AnnouncementDTOs;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,9 +46,15 @@ namespace BusinessLayer.Container
             services.AddScoped<IAnnouncementService, AnnouncementManager>();
             services.AddScoped<IAnnouncementDal, EfAnnouncementDal>();
 
+            services.AddScoped<IAccountService, AccountManager>();
+            services.AddScoped<IAccountDal, EfAccountDal>();
+
             services.AddScoped<IExcelService, ExcelManager>();
 
             services.AddScoped<IPdfService, PdfManager>();
+
+
+            services.AddScoped<IUnitOfWorkDal,UnitOfWorkDal>();
         }
             //bu commentservice ve comment dal i elave etdik ki ef baqimliliqini azaltmaq ucun.Belelikle controllerde ICommentServici caqirib rahatliqla isimizi gore bilerik
     
