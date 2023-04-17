@@ -21,8 +21,11 @@ namespace EntityLayer.Concrete
         public string Details1 { get; set; } = "Traversal detail";
         public string Details2 { get; set; } = "Traversal detail";
         public string Image2 { get; set; } = "user.png";
+        public DateTime Date { get; set; } = DateTime.Now;
         public int Capacity { get; set; }
-        public bool Status { get; set; } = true; 
+        public bool Status { get; set; } = true;
+        public int GuideId { get; set; }
+        public Guide Guide{ get; set; }
         public List<Comment> Comments { get; set; }
         public List<Reservation> Reservations { get; set; }
     }

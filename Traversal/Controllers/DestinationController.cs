@@ -26,7 +26,7 @@ namespace PresentationLayer.Controllers
                 ViewBag.userimage = user.Image;
                 ViewBag.name = user.Name + " " + user.Surname;
             }
-            var des = dm.TGetById(id);
+            var des = dm.TGetByIdWithGuide(id);
             return View(des);
         }
     }

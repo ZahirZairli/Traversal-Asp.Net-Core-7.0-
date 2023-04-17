@@ -1,8 +1,10 @@
 ﻿using BusinessLayer.Abstract;
 using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using DocumentFormat.OpenXml.Bibliography;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using PresentationLayer.Areas.Admin.Models;
 
 namespace PresentationLayer.Areas.Admin.Controllers
@@ -12,10 +14,12 @@ namespace PresentationLayer.Areas.Admin.Controllers
     public class AdminDestinationController : Controller
     {
         private readonly IDestinationService dm;
+        private readonly IGuideService gm;
 
-        public AdminDestinationController(IDestinationService dm)
+        public AdminDestinationController(IDestinationService dm, IGuideService gm)
         {
             this.dm = dm;
+            this.gm = gm;
         }
 
         public IActionResult Index()
@@ -26,12 +30,12 @@ namespace PresentationLayer.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult NewDestination()
         {
+            GetListGuides();
             return View();
         }
         [HttpPost]
         public IActionResult NewDestination(Destination newdes,IFormFile Image,IFormFile CoverImage,IFormFile Image2)
         {
-
             if (Image != null)
             {
                 var extension = Path.GetExtension(Image.FileName);
@@ -59,9 +63,8 @@ namespace PresentationLayer.Areas.Admin.Controllers
                 CoverImage.CopyTo(stream3);
                 newdes.Image2 = newimagename3;
             }
-
-
             dm.TAdd(newdes);
+            GetListGuides();
             return RedirectToAction("Index");
         }
         public IActionResult Delete(int id)
@@ -74,14 +77,40 @@ namespace PresentationLayer.Areas.Admin.Controllers
         public IActionResult Edit(int id)
         {
             var value = dm.TGetById(id);
+            GetListGuides();
             return View(value);
         }
         [HttpPost]
         public IActionResult Edit(Destination ds)
         {
+            var des = dm.TGetById(ds.DestinationId);
+            if (ds.Image == null)
+            {
+                ds.Image = des.Image;
+            }
+            if (ds.Image2 == null)
+            {
+                ds.Image2 = des.Image2;
+            }
+            if (ds.CoverImage == null)
+            {
+                ds.CoverImage = des.CoverImage;
+            }
+
             dm.TUpdate(ds);
+            GetListGuides();
             return RedirectToAction("Index");
         }
-
+        public void GetListGuides()
+        {
+            Guide c = new Guide();
+            List<SelectListItem> deger1 = (from x in gm.TGetListFilter(x=>x.Status==true)
+                                           select new SelectListItem
+                                           {
+                                               Text = x.FullName,   //optionun metni
+                                               Value = x.GuideId.ToString() //optionun valuesi
+                                           }).ToList();
+            ViewBag.dpr = deger1;
+        }
     }
 }

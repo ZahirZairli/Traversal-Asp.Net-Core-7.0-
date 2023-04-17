@@ -15,6 +15,6 @@ namespace EntityLayer.Concrete
         public string Mail { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }
-        public DateTime MessageDate { get; set; }
+        public DateTime MessageDate { get; set; } = DateTime.Now;
     }
 }

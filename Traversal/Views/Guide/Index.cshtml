@@ -1,0 +1,66 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common;
+@model IPagedList<Guide>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+
+<!-- team -->
+<section class="w3l-team" id="team">
+    <div class="team-block py-5">
+        <div class="container py-lg-5">
+            <div class="title-content text-center mb-lg-3 mb-4">
+                <h6 class="sub-title">Komandamız</h6>
+                <h3 class="hny-title">Bələdçilərimizlə tanış olun</h3>
+            </div>
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-3 col-6 mt-lg-5 mt-4">
+                        <div class="box16">
+                            <a href="#url"><img style="height:330px;" src="/Images/@item.Image" alt="@item.FullName" onerror="this.src('/Images/user.png')" class="img-fluid" /></a>
+                            <div class="box-content">
+                                <h3 class="title"><a href="#url">@item.FullName</a></h3>
+                                <span class="post">@item.Description</span>
+                                <ul class="social">
+                                    <li>
+                                        <a href="@item.InstagramUrl" class="facebook">
+                                            <span class="fa fa-instagram"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@item.TwitterUrl" class="twitter">
+                                            <span class="fa fa-twitter"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="container mt-4">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+                {
+                DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                LinkToFirstPageFormat = "<<",
+                LinkToPreviousPageFormat = "<",
+                LinkToNextPageFormat = ">",
+                LinkToLastPageFormat = ">>",
+                MaximumPageNumbersToDisplay = 5,
+                ContainerDivClasses = new[] { "pagination", "justify-content-center" },
+                UlElementClasses = new[] { "pagination" },
+                LiElementClasses = new[] { "page-item" },
+                PageClasses = new[] { "page-link" },
+                })
+            </div>
+        </div>
+    </div>
+</section>
+<!-- //team -->

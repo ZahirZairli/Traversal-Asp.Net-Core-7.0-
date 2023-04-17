@@ -21,6 +21,7 @@
                             <div class="info">
                                 <h4><a href="blog-single.html">@item.City</a></h4>
                                 <p>@item.DayNight</p>
+                                    <p style="float:right;">@(((DateTime)item.Date).ToString("dd-MMM-yyyy"))</p>
                                 <div class="dst-btm">
                                     <h6 class="">Qiymət</h6>
                                     <span>₼ @item.Price</span>

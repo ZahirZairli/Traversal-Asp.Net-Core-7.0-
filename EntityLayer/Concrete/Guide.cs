@@ -17,5 +17,6 @@ namespace EntityLayer.Concrete
         public string TwitterUrl { get; set; } = "user.png";
         public string InstagramUrl { get; set; } = "user.png";
         public bool Status { get; set; } = true;
+        public List<Destination> Destinations;
     }
 }

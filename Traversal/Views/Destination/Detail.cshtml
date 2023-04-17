@@ -88,7 +88,59 @@
                         <a href="#blog-share"><span class="fa fa-pinterest-p" aria-hidden="true"></span></a>
                     </div>
                 </div>
-                @await Component.InvokeAsync("RandomGuide")
+                <div class="author-card mt-5">
+                    <div class="row align-items-center">
+                        <div class="col-sm-3 col-6">
+                            <div>
+                                <img src="/Images/@Model.Guide.Image" alt="@Model.Guide.FullName" onerror="this.src('/Images/user.png')" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="col-sm-9 mt-sm-0 mt-3">
+                            <h3 class="mb-3 title"><b>Tur üzrə bələdçi:</b> @Model.Guide.FullName</h3>
+                            <p>
+                                @Model.Guide.Description
+                            </p>
+                            <ul class="author-icons mt-4">
+                                <li>
+                                    <a class="facebook" href="@Model.Guide.InstagramUrl">
+                                        <span class="fa fa-facebook"
+                                              aria-hidden="true"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="twitter" href="@Model.Guide.TwitterUrl">
+                                        <span class="fa fa-twitter"
+                                              aria-hidden="true"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="google" href="@Model.Guide.InstagramUrl">
+                                        <span class="fa fa-google-plus"
+                                              aria-hidden="true"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="linkedin" href="@Model.Guide.InstagramUrl">
+                                        <span class="fa fa-linkedin"
+                                              aria-hidden="true"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="github" href="@Model.Guide.InstagramUrl">
+                                        <span class="fa fa-github"
+                                              aria-hidden="true"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dribbble" href="@Model.Guide.TwitterUrl">
+                                        <span class="fa fa-dribbble"
+                                              aria-hidden="true"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
                 @await Component.InvokeAsync("Comments",new {id = Model.DestinationId})
                 @await Html.PartialAsync("~/Views/Comment/AddComment.cshtml")
             </div>

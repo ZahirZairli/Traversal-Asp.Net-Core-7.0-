@@ -28,7 +28,7 @@
         </div>
     }
 </div>
-
+@if(User.Identity.IsAuthenticated){
 <script>
     // this is the id of the form
     $("#addcomment").submit(function (e) {
@@ -70,3 +70,4 @@
         });
     });
 </script>
+}
