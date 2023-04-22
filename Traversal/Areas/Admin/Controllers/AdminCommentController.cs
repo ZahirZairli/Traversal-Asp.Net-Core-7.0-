@@ -18,7 +18,7 @@ namespace PresentationLayer.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            var values = _commentService.TGetCommentsWithDestination();
+            var values = _commentService.TGetCommentsWithDestinationAndAppUser();
             return View(values);
         }
         public IActionResult Delete(int id)
