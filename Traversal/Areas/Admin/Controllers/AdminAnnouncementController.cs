@@ -3,6 +3,7 @@ using BusinessLayer.Abstract;
 using BusinessLayer.FluentValidation;
 using DTOLayer.DTOs.AnnouncementDTOs;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PresentationLayer.Areas.Admin.Models;
 
@@ -10,6 +11,7 @@ namespace PresentationLayer.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/[controller]/[action]")]
+    [Authorize(Roles = "Admin")]
     public class AdminAnnouncementController : Controller
     {
         private readonly IAnnouncementService _announcementService;

@@ -1,6 +1,6 @@
 ﻿@using EntityLayer.Concrete
 @model List<Guide>
-<div class="col-12 col-xl-4">
+<div class="col-12 col-xl-6">
     <div class="card h-100">
         <div class="card-header pb-0 p-3">
             <h6 class="mb-0">Bələdçilər</h6>
@@ -17,7 +17,7 @@
                             <h6 class="mb-0 text-sm">@item.FullName</h6>
                             <p class="mb-0 text-xs">@item.Description</p>
                         </div>
-                        <a class="btn btn-link pe-3 ps-0 mb-0 ms-auto" href="javascript:;">Profİl</a>
+                        <a class="btn btn-link pe-3 ps-0 mb-0 ms-auto" href="/Guide/Index">Profİl</a>
                     </li>
                 }
             </ul>

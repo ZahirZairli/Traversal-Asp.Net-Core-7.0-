@@ -1,15 +1,16 @@
-﻿@model EntityLayer.Concrete.SubAbout
+﻿@*@model EntityLayer.Concrete.SubAbout*@
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 <section class="w3l-bottom py-5">
     <div class="container py-md-4 py-3 text-center">
         <div class="row my-lg-4 mt-4">
             <div class="col-lg-9 col-md-10 ml-auto">
                 <div class="bottom-info ml-auto">
                     <div class="header-section text-left">
-                        <h3 class="hny-title two">@Model.Title</h3>
+                        <h3 class="hny-title two">@localizer["İnsanların Səyahət Hekayələrinə Qoşulmaq Istərdinizmi?"]</h3>
                         <p class="mt-3 pr-lg-5">
-                            @Model.Description
+                            @localizer["Elə indi rezervasiya edin və istədiyiniz yerə minimum xərclə rahat şəkildə səyahət edin"]
                         </p>
-                        <a href="about.html" class="btn btn-style btn-secondary mt-5">Daha çox</a>
+                        <a href="about.html" class="btn btn-style btn-secondary mt-5">@localizer["Daha çox"]</a>
                     </div>
                 </div>
             </div>

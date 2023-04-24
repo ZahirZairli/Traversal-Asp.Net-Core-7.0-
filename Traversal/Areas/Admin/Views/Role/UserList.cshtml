@@ -1,0 +1,56 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common;
+@model IPagedList<AppUser>
+@{
+    ViewData["Title"] = "UserList";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var a = 1;
+}
+
+<div class="card" style="padding: 5px;">
+    <h5 class="card-header">İstifadəçilərin siyahısı</h5>
+    <div class="table-responsive text-nowrap">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Tam ad</th>
+                    <th>İstİfadəçİ adı</th>
+                    <th>Vəzİfə</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>@a</strong></td>
+                        <td>@item.Name @item.Surname</td>
+                        <td>@item.UserName</td>
+                        <td><a asp-area="Admin" asp-controller="Role" asp-action="AssignRole" asp-route-id="@item.Id">Vəzifə</a></td>
+                    </tr>
+                    a++;
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="container mt-4">
+        @Html.PagedListPager(Model, page => Url.Action("UserList", new { page }), new PagedListRenderOptions
+        {
+        DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+        DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+        LinkToFirstPageFormat = "<<",
+        LinkToPreviousPageFormat = "<",
+        LinkToNextPageFormat = ">",
+        LinkToLastPageFormat = ">>",
+        MaximumPageNumbersToDisplay = 5,
+        ContainerDivClasses = new[] { "pagination", "justify-content-center" },
+        UlElementClasses = new[] { "pagination" },
+        LiElementClasses = new[] { "page-item" },
+        PageClasses = new[] { "page-link" },
+        })
+    </div>
+</div>
+

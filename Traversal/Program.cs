@@ -11,7 +11,9 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Mvc.Razor;
 using PresentationLayer.CQRS.Handlers.DestinationHandlers;
 using PresentationLayer.Models;
 
@@ -56,7 +58,7 @@ builder.Services.AddIdentity<AppUser, AppRole>(x =>
     x.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(3);
     x.Lockout.MaxFailedAccessAttempts = 3;
     //x.Password.RequireNonAlphanumeric = false;   
-}).AddEntityFrameworkStores<Context>().AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<Context>();
+}).AddEntityFrameworkStores<Context>().AddErrorDescriber<CustomIdentityValidator>().AddTokenProvider<DataProtectorTokenProvider<AppUser>>(TokenOptions.DefaultProvider).AddEntityFrameworkStores<Context>();
 
 //Yaratmis olduqumuz Api ni istifade etmek ucun confiqurasiya start
 builder.Services.AddHttpClient();
@@ -93,8 +95,17 @@ builder.Services.AddMvc(config =>
     .Build();
     config.Filters.Add(new AuthorizeFilter(policy));
 });
-builder.Services.AddMvc();
-//****************made on my own end
+//************made on my own start for Multi Languages
+builder.Services.AddLocalization(opt =>
+{
+    opt.ResourcesPath = "Resources";
+});
+//davami addMvc() nin ardindadi.Buradaki resources ise dil fayllarinin olduqu pafqanin adidi.addMvc() nin ardindan ise UseAuthorizationun()
+//altindakileri yaziriq
+//****************made on my own end for multi Languages
+
+builder.Services.AddMvc().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization();
+//****************made on my own end for authentication
 
 
 
@@ -135,13 +146,19 @@ app.UseStaticFiles();
 app.UseRouting();
 
 
-
-
 app.UseAuthorization();
+
+//************made on my own start for Multi Languages
+var supportedCultures = new[] { "en", "fr", "tr", "de", "az"}; 
+var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[4]).AddSupportedCultures(supportedCultures).AddSupportedUICultures(supportedCultures);
+app.UseRequestLocalization(localizationOptions);
+//************made on my own end for Multi Languages
+
+
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Default}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "areas",

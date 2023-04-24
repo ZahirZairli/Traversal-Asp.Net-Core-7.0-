@@ -87,7 +87,7 @@
             data: form.serialize(), // serializes the form's elements.
             success: function () {
                 var name = $('#w3lName').val();
-                $('#test').html(`<div class="alert alert-success alert-dismissible fade show mt-2" role="alert"><strong>Təbrikllər ${name}!</strong>Uğurla yorum yazdınız.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>`);
+                $('#test').html(`<div class="alert alert-success alert-dismissible fade show mt-2" role="alert"><strong>Təbrikllər ${name}!</strong>Mesajınız uğurla göndərildi.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>`);
                 $('#contactForm')[0].reset();
             }
         });

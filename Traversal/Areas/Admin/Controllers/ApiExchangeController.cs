@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using PresentationLayer.Areas.Admin.Models;
 using X.PagedList;
@@ -6,6 +7,7 @@ namespace PresentationLayer.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/[controller]/[action]")]
+    [Authorize(Roles = "Admin")]
     public class ApiExchangeController : Controller
     {
         public async Task<IActionResult> Index(int page = 1 , string UserName = "")

@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Abstract.AbstractUnitOfWork;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PresentationLayer.Areas.Admin.Models;
 
@@ -7,6 +8,7 @@ namespace PresentationLayer.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/[controller]/[action]")]
+    [Authorize(Roles = "Admin")]
     public class AccountUnitOfWorkController : Controller
     {
         private readonly IAccountService _accountService;

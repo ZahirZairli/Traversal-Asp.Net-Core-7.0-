@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PresentationLayer.CQRS.Commands.DestinationCommands;
 using PresentationLayer.CQRS.Handlers.DestinationHandlers;
 using PresentationLayer.CQRS.Queries.DestinationQueries;
@@ -8,6 +9,7 @@ namespace PresentationLayer.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/[controller]/[action]")]
+    [Authorize(Roles = "Admin")]
     public class AdminDestinationCQRSController : Controller
     {
         private readonly GetDestinationsForStrangersQueryHandler _getDestinationsForStrangersQueryHandler;

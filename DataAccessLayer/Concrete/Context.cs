@@ -14,8 +14,9 @@ namespace DataAccessLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=DESKTOP-SDVG61S\\SQLEXPRESS;database=TraversalDb;integrated security=true;TrustServerCertificate=True;");
-        }
+            //optionsBuilder.UseSqlServer("server=DESKTOP-SDVG61S\\SQLEXPRESS;database=TraversalDb;integrated security=true;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer("workstation id=ZahirTraversalDb.mssql.somee.com;packet size=4096;user id=traversal_SQLLogin_2;pwd=ntnlqigrsv;data source=ZahirTraversalDb.mssql.somee.com;persist security info=False;initial catalog=ZahirTraversalDb;TrustServerCertificate=True;");
+		}
         public DbSet<About> Abouts { get; set; }
         public DbSet<About2> About2s { get; set; }
         public DbSet<Contact> Contacts { get; set; }

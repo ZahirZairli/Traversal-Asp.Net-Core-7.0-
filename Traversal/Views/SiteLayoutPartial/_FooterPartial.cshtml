@@ -1,4 +1,5 @@
-﻿<footer>
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+<footer>
     <section class="w3l-footer">
         <div class="w3l-footer-16-main py-5">
             <div class="container">
@@ -6,17 +7,17 @@
                     <div class="col-lg-6 column">
                         <div class="row">
                             <div class="col-md-4 column">
-                                <h3>Şirkətimiz</h3>
+                                <h3>@localizer["Şirkətimiz"]</h3>
                                 <ul class="footer-gd-16">
-                                    <li><a href="/Default/Index">Ana səhifə</a></li>
-                                    <li><a href="#">Haqqımızda</a></li>
-                                    <li><a href="/Destination/Index">Turlar</a></li>
-                                    <li><a href="#">Xidmətlər</a></li>
-                                    <li><a href="#">Əlaqə</a></li>
+                                    <li><a href="/Default/Index">@localizer["Ana Səhifə"]</a></li>
+                                    <li><a href="#">@localizer["Haqqımızda"]</a></li>
+                                    <li><a href="/Destination/Index">@localizer["Turlar"]</a></li>
+                                    <li><a href="#">@localizer["Xidmətlər"]</a></li>
+                                    <li><a href="#">@localizer["Əlaqə"]</a></li>
                                 </ul>
                             </div>
                             <div class="col-md-4 column mt-md-0 mt-4">
-                                <h3>Faydalı linklər</h3>
+                                <h3>@localizer["Faydalı linklər"]</h3>
                                 <ul class="footer-gd-16">
                                     <li><a href="#url">Hava yolları</a></li>
                                     <li><a href="#url">Xəstaxanalar</a></li>
@@ -26,7 +27,7 @@
                                 </ul>
                             </div>
                             <div class="col-md-4 column mt-md-0 mt-4">
-                                <h3>Xidmətlərimiz</h3>
+                                <h3>@localizer["Xidmətlərimiz"]</h3>
                                 <ul class="footer-gd-16">
                                     <li><a href="#url">Servisler</a></li>
                                     <li><a href="#url">Ring səfərləri</a></li>
@@ -38,21 +39,21 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 column pl-lg-5 column4 mt-lg-0 mt-5">
-                        <h3>Email bülleteni</h3>
+                        <h3>@localizer["Email bülleteni"]</h3>
                         <div class="end-column">
-                            <h4>Son kompaniyalardan xəbardar olun.</h4>
+                            <h4>@localizer["Son kompaniyalardan xəbardar olun."]</h4>
                             <form action="#" class="subscribe" method="post">
-                                <input type="email" name="email" placeholder="Email Adresi" required="">
-                                <button type="submit">Abonə ol</button>
+                                <input type="email" name="email" placeholder="@localizer["Email Adresi"]" required="">
+                                <button type="submit">@localizer["Abonə ol"]</button>
                             </form>
-                            <p>Kompaniyalardan xəbərdar olmaq üçün abonə olun.Spam mesajlar almayacaqsınız.</p>
+                            <p>@localizer["Kompaniyalardan xəbərdar olmaq üçün abonə olun.Spam mesajlar almayacaqsınız"].</p>
                         </div>
                     </div>
                 </div>
                 <div class="d-flex below-section justify-content-between align-items-center pt-4 mt-5">
                     <div class="columns text-lg-left text-center">
                         <p>
-                             @DateTime.Now.Year Traversal. Bütün hüquqlar qorunur<a href="https://zahirzairli.com/" target="_blank">
+                            @DateTime.Now.Year Traversal.@localizer["Bütün hüquqlar qorunur"]<a href="https://zahirzairli.com/" target="_blank">
                                 Zahir Zairli
                             </a>
                         </p>

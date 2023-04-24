@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PresentationLayer.CQRS.Commands.GuideCommands;
 using PresentationLayer.CQRS.Handlers.GuideHandlers;
@@ -8,6 +9,7 @@ namespace PresentationLayer.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/[controller]/[action]")]
+    [Authorize(Roles = "Admin")]
     public class AdminGuideMediatRController : Controller
     {
         private readonly IMediator _mediatR;

@@ -1,4 +1,4 @@
-﻿
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 @{
     Layout = null;
 }
@@ -8,11 +8,189 @@
 <body>
     <header id="site-header" class="fixed-top">
         <div class="container">
-            @await Html.PartialAsync("/Views/SiteLayoutPartial/_TopNavPartial.cshtml")
+            @*@await Html.PartialAsync("/Views/SiteLayoutPartial/_TopNavPartial.cshtml")*@
+            <nav class="navbar navbar-expand-lg stroke">
+                <h1>
+                    <a class="navbar-brand mr-lg-5" href="Default/Index">
+                        Traversal
+                    </a>
+                </h1>
+
+                <!-- if logo is image enable this
+                <a class="navbar-brand" href="#index.html">
+                    <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+                </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
+                        data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Default/Index">@localizer["Ana Səhifə"]<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">@localizer["Haqqımızda"]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Destination/Index">@localizer["Turlar"]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Guide/Index">@localizer["Bələdçilər"]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Contact/Index">@localizer["Əlaqə"]</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                @localizer["Dil"]<span class="fa fa-angle-down"></span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                                <a class="dropdown-item" asp-route-culture="az">@localizer["Azərbaycan"]  <img style="width: 30px !important;" src="/Images/azerbaijan.png"/></a>
+                                <a class="dropdown-item" asp-route-culture="en">@localizer["İngilis"]  <img style="width: 30px !important;" src="/Images/english.png" /></a>
+                                <a class="dropdown-item" asp-route-culture="de">@localizer["Alman"]  <img style="width: 30px !important;" src="/Images/germany.png" /> </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="d-lg-block d-none">
+                    <a href="/Member/ReservationUser/NewReservation" class="btn btn-style btn-secondary">@localizer["Rezervasiya et"]</a>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+            </nav>
         </div>
     </header>
     @RenderBody()
-    @await Html.PartialAsync("/Views/SiteLayoutPartial/_FooterPartial.cshtml")
+    @*@await Html.PartialAsync("/Views/SiteLayoutPartial/_FooterPartial.cshtml")*@
+    <footer>
+        <section class="w3l-footer">
+            <div class="w3l-footer-16-main py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 column">
+                            <div class="row">
+                                <div class="col-md-4 column">
+                                    <h3>@localizer["Şirkətimiz"]</h3>
+                                    <ul class="footer-gd-16">
+                                        <li><a href="/Default/Index">@localizer["Ana Səhifə"]</a></li>
+                                        <li><a href="#">@localizer["Haqqımızda"]</a></li>
+                                        <li><a href="/Destination/Index">@localizer["Turlar"]</a></li>
+                                        <li><a href="#">@localizer["Xidmətlər"]</a></li>
+                                        <li><a href="#">@localizer["Əlaqə"]</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4 column mt-md-0 mt-4">
+                                    <h3>@localizer["Faydalı linklər"]</h3>
+                                    <ul class="footer-gd-16">
+                                        <li><a href="#url">@localizer["Hava yolları"]</a></li>
+                                        <li><a href="#url">@localizer["Xəstaxanalar"]</a></li>
+                                        <li><a href="#url">@localizer["Pul Dəyişmə Məntəqələri"]</a></li>
+                                        <li><a href="#">@localizer["Turizim ofisi"]</a></li>
+                                        <li><a href="#url">@localizer["Bizə yazın"]</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4 column mt-md-0 mt-4">
+                                    <h3>@localizer["Xidmətlərimiz"]</h3>
+                                    <ul class="footer-gd-16">
+                                        <li><a href="#url">@localizer["Servisler"]</a></li>
+                                        <li><a href="#url">@localizer["Ring səfərləri"]</a></li>
+                                        <li><a href="/Guide/Index">@localizer["Bələdçilərimiz"]</a></li>
+                                        <li><a href="#">@localizer["Azərbaycan ofisi"]</a></li>
+                                        <li><a href="#url">@localizer["Türkiyə ofisi"]</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 column pl-lg-5 column4 mt-lg-0 mt-5">
+                            <h3>@localizer["Email bülleteni"]</h3>
+                            <div class="end-column">
+                                <h4>@localizer["Son kompaniyalardan xəbardar olun."]</h4>
+                                <form action="#" class="subscribe" method="post">
+                                    <input type="email" name="email" placeholder="@localizer["Email Adresi"]" required="">
+                                    <button type="submit">@localizer["Abonə ol"]</button>
+                                </form>
+                                <p>@localizer["Kompaniyalardan xəbərdar olmaq üçün abonə olun.Spam mesajlar almayacaqsınız"].</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex below-section justify-content-between align-items-center pt-4 mt-5">
+                        <div class="columns text-lg-left text-center">
+                            <p>
+                                @DateTime.Now.Year Traversal.@localizer["Bütün hüquqlar qorunur"]<a href="https://zahirzairli.com/" target="_blank">
+                                    Zahir Zairli
+                                </a>
+                            </p>
+                        </div>
+                        <div class="columns-2 mt-lg-0 mt-3">
+                            <ul class="social">
+                                <li>
+                                    <a href="#facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a>
+                                </li>
+                                <li>
+                                    <a href="#linkedin"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
+                                </li>
+                                <li>
+                                    <a href="#twitter"><span class="fa fa-twitter" aria-hidden="true"></span></a>
+                                </li>
+                                <li>
+                                    <a href="#google"><span class="fa fa-google-plus" aria-hidden="true"></span></a>
+                                </li>
+                                <li>
+                                    <a href="#github"><span class="fa fa-github" aria-hidden="true"></span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- move top -->
+            <button onclick="topFunction()" id="movetop" title="Go to top">
+                <span class="fa fa-angle-up"></span>
+            </button>
+            <script>
+                // When the user scrolls down 20px from the top of the document, show the button
+                window.onscroll = function () {
+                    scrollFunction()
+                };
+                function scrollFunction() {
+                    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                        document.getElementById("movetop").style.display = "block";
+                    } else {
+                        document.getElementById("movetop").style.display = "none";
+                    }
+                }
+                // When the user clicks on the button, scroll to the top of the document
+                function topFunction() {
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                }
+            </script>
+            <!-- //move top -->
+            <script>
+                $(function () {
+                    $('.navbar-toggler').click(function () {
+                        $('body').toggleClass('noscroll');
+                    })
+                });
+            </script>
+        </section>
+    </footer>
     @await Html.PartialAsync("/Views/SiteLayoutPartial/_ScriptPartial.cshtml")
 </body>
 </html>
