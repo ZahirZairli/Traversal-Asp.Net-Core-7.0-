@@ -13,6 +13,12 @@ Used Technologies
 11.Ajax
 12.MimeKit
 13.Swagger
+Link for admin Panel login: https://zahirtraversal.bsite.net/Admin/AdminDashboard/Index
+username: zahirzairli
+password: Zahir2000@
+
+
+
 ![HomePage](./Traversal/GithubImages/TraversalHome.png)
 ![HomePage](./Traversal/GithubImages/login.png)
 ![HomePage](./Traversal/GithubImages/TraversalDestinations.png)
