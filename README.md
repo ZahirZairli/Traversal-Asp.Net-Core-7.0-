@@ -1,4 +1,7 @@
 # Traversal-Asp.Net-Core-7.0-
+Link for admin Panel login: https://zahirtraversal.bsite.net/Admin/AdminDashboard/Index
+username: zahirzairli
+password: Zahir2000@
 Used Technologies
 1.C#
 2.Asp.Net Core 7.0
@@ -13,9 +16,7 @@ Used Technologies
 11.Ajax
 12.MimeKit
 13.Swagger
-Link for admin Panel login: https://zahirtraversal.bsite.net/Admin/AdminDashboard/Index
-username: zahirzairli
-password: Zahir2000@
+
 
 
 
