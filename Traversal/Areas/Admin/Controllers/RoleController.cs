@@ -112,11 +112,11 @@ namespace PresentationLayer.Areas.Admin.Controllers
             var roles = _roleManager.Roles.ToList();
             var userRoles = await _userManager.GetRolesAsync(user);
 
-            List<UserRoles> userHasRoles = new List<UserRoles>();
+            List<UserRolesEdit> userHasRoles = new List<UserRolesEdit>();
 
             foreach (var item in roles)
             {
-                UserRoles role = new UserRoles();
+                UserRolesEdit role = new UserRolesEdit();
                 role.RoleId = item.Id;
                 role.RoleName = item.Name;
                 role.RoleExist = userRoles.Contains(item.Name);
@@ -126,7 +126,7 @@ namespace PresentationLayer.Areas.Admin.Controllers
             return View(userHasRoles);
         }
         [HttpPost]
-        public async Task<IActionResult> AssignRole(List<UserRoles> model)
+        public async Task<IActionResult> AssignRole(List<UserRolesEdit> model)
         {
             var userId = TempData["userId"].ToString();
             var user = _userManager.Users.FirstOrDefault(x => x.Id.ToString() == userId);
