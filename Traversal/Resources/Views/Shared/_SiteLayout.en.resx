@@ -201,6 +201,9 @@
   <data name="QONAQLARIMIZ BİZİM ÜÇÜN NƏ DEYİRLƏR" xml:space="preserve">
     <value>WHAT OUR GUESTS SAY ABOUT US</value>
   </data>
+  <data name="Rezervasiya edin" xml:space="preserve">
+    <value>Make A Reservation</value>
+  </data>
   <data name="Rezervasiya et" xml:space="preserve">
     <value>Make a reservation</value>
   </data>

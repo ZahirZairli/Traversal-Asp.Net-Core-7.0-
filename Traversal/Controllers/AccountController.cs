@@ -43,7 +43,8 @@ namespace PresentationLayer.Controllers
 				var result = await _userManager.CreateAsync(user, p.Password);
 				if (result.Succeeded)
 				{
-					await _userManager.AddToRoleAsync(user, "Member");
+					var newUserAddRole = _userManager.Users.FirstOrDefault(x=>x.UserName==user.UserName);
+					await _userManager.AddToRoleAsync(newUserAddRole, "Member");
 					return RedirectToAction("Login");
 				}
 				else
