@@ -13,4 +13,4 @@ Used Technologies
 11.Ajax
 12.MimeKit
 13.Swagger
-![HomePage](./GithubImages/TraversalHome.png)
+![HomePage](./Traversal/GithubImages/TraversalHome.png)
