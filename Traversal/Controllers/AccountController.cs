@@ -1,9 +1,11 @@
 ﻿using EntityLayer.Concrete;
 using MailKit.Net.Smtp;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MimeKit;
+using NuGet.Protocol;
 using PresentationLayer.Models;
 
 namespace PresentationLayer.Controllers
@@ -84,8 +86,11 @@ namespace PresentationLayer.Controllers
 		}
 		public async Task<IActionResult> LogOut()
 		{
-			await _signInManager.SignOutAsync();
-			return RedirectToAction("Index", "Default");
+            await _signInManager.SignOutAsync();
+            Response.Headers["Cache-Control"] = "no-cache, no-store, must-revalidate";
+            Response.Headers["Pragma"] = "no-cache";
+            Response.Headers["Expires"] = "0";
+            return RedirectToAction("Index", "Default");
 		}
 		public IActionResult AccessDenied()
 		{
@@ -113,7 +118,7 @@ namespace PresentationLayer.Controllers
 
 
 				MimeMessage mimeMessage = new MimeMessage();
-				MailboxAddress mailboxAddressFrom = new MailboxAddress("Traversal", "zahirtraversal@gmail.com");
+				MailboxAddress mailboxAddressFrom = new MailboxAddress("Traversal", "zahirzairli@gmail.com");
 				mimeMessage.From.Add(mailboxAddressFrom);
 				MailboxAddress mailboxAddressTo = new MailboxAddress("User", forgetPasswordViewModel.Mail);
 				mimeMessage.To.Add(mailboxAddressTo);
@@ -127,7 +132,7 @@ namespace PresentationLayer.Controllers
 				SmtpClient client = new SmtpClient();
 				client.Connect("smtp.gmail.com", 587, false);
 				//zahirtraversal@gmail.com  
-				client.Authenticate("zahirtraversal@gmail.com", "jxrjhrjfvqpvkszu");
+				client.Authenticate("zahirzairli@gmail.com", "cpkmbxsuoperzifm");
 				var result = client.Send(mimeMessage);
 				client.Disconnect(true);
 				TempData["SendSuccess"] = "true";
