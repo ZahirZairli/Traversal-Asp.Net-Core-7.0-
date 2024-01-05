@@ -1,7 +1,8 @@
 # Traversal-Asp.Net-Core-7.0-
-Link for admin Panel login: https://zahirtraversal.bsite.net/Admin/AdminDashboard/Index
-username: zahirzairli
-password: Zahir2000@
+Link for admin Panel login: https://zairlizahir.bsite.net/
+Admin details:
+username: zahir
+password: Tankionline2017@
 Used Technologies
 1.C#
 2.Asp.Net Core 7.0
